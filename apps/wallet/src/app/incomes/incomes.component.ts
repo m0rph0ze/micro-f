@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { Income } from '../models/income';
+import { IncomesService } from './incomes.service';
 
 @Component({
   selector: 'micro-f-incomes',
@@ -8,12 +9,7 @@ import { Income } from '../models/income';
   styleUrls: ['./incomes.component.scss']
 })
 export class IncomesComponent implements OnInit {
-  public incomes: Income[] = [
-    new Income(1000, 'USD', 'Website development', 3.9),
-    new Income(758, 'GPD', 'Logo design', 4.7),
-    new Income(633, 'EUR', 'Additional IT services', 4.3),
-    new Income(1924,'PLN', 'Programming services', 1)
-  ];
+  public incomes: Income[] = [];
 
   public incomeForm = this.formBuilder.group({
     amount: [0, Validators.compose([Validators.required, Validators.min(0)])],
@@ -24,19 +20,36 @@ export class IncomesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private $incomeService: IncomesService
   ) { }
 
   ngOnInit() {
+    this.getIncomes();
+  }
+
+  getIncomes(): void {
+    this.$incomeService.getIncomes()
+    .then((incomes: Income[]) => incomes.forEach(
+      (income: Income) => this.incomes.push(new Income(income.amount, income.currency, income.service, income.rate))
+    ))
+    .catch(console.error);
   }
 
   addIncome(formDirective: FormGroupDirective, incomes: Income[]): void {
     if(formDirective.form.valid) {
-      incomes.push(new Income(
+      let income: Income = new Income(
         formDirective.form.controls['amount'].value,
         formDirective.form.controls['currency'].value,
         formDirective.form.controls['service'].value,
         formDirective.form.controls['rate'].value
-      ));
+      );
+      this.$incomeService.postIncome({
+        amount: formDirective.form.controls['amount'].value,
+        currency: formDirective.form.controls['currency'].value,
+        service: formDirective.form.controls['service'].value,
+        rate: formDirective.form.controls['rate'].value
+      });
+      this.incomes.push(income);
     }
   }
 

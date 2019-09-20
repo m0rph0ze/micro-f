@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { IncomesComponent } from './incomes/incomes.component';
+import { IncomesService } from './incomes/incomes.service';
 
 @NgModule({
   declarations: [AppComponent, IncomesComponent],
@@ -15,7 +16,9 @@ import { IncomesComponent } from './incomes/incomes.component';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' })
   ],
-  providers: [],
+  providers: [
+    IncomesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
