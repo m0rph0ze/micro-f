@@ -7,5 +7,12 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "wallet-e2e": {
+      "tags": []
+    },
+    "wallet": {
+      "tags": []
+    }
+  }
 }
