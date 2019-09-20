@@ -1,1 +1,2 @@
-export const getGreeting = () => cy.get('h1');
+export const getWallet = () => cy.get('#wallet');
+export const getIncomes = () => cy.get('#incomes');

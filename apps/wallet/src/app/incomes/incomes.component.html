@@ -1,0 +1,53 @@
+<ul id="incomes">
+  Incomes:
+  <li *ngFor="let income of incomes">
+    {{ income.service }} {{ income.amount }} {{ income.currency }},
+    <ng-container *ngIf="income.currency !== 'PLN'"
+      >{{ income.countCurrencyToPLN() }} PLN</ng-container
+    >
+  </li>
+</ul>
+
+<form
+  [formGroup]="incomeForm"
+  #ngForm="ngForm"
+  (ngSubmit)="addIncome(ngForm, incomes)"
+>
+  <div class="input-wrapper">
+    <label for="amount-input">Amount: </label>
+    <input
+      id="amount-input"
+      placeholder="Amount"
+      type="number"
+      formControlName="amount"
+    />
+  </div>
+  <div class="input-wrapper">
+    <label for="currency-input">Currency: </label>
+    <input
+      id="currency-input"
+      placeholder="Currency"
+      type="text"
+      formControlName="currency"
+    />
+  </div>
+  <div class="input-wrapper">
+    <label for="service-input">Service: </label>
+    <input
+      id="service-input"
+      placeholder="Service"
+      type="text"
+      formControlName="service"
+    />
+  </div>
+  <div class="input-wrapper">
+    <label for="rate-input">Rate: </label>
+    <input
+      id="rate-input"
+      placeholder="Rate"
+      type="number"
+      formControlName="rate"
+    />
+    <button type="submit">Add income</button>
+  </div>
+</form>
