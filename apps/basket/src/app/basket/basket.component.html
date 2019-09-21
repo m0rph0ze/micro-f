@@ -1,0 +1,7 @@
+<h1>Basket:</h1>
+<ul id="products">
+    Products:
+    <li *ngFor="let product of products">
+      {{ product.name }} {{ product.price }} {{ product.currency }}, Quantity:{{ product.quantity}}
+    </li>
+  </ul>

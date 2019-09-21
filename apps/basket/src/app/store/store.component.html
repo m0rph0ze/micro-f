@@ -1,0 +1,25 @@
+<h1>Store:</h1>
+<ul id="storeProducts" *ngIf="(storeProducts$ | async) as products">
+  Store products:
+  <li *ngFor="let product of products">
+    <button (click)="addProduct(product, quantity, addedProducts)">+</button>
+    {{ product.name }} {{ product.price }} {{ product.currency }}
+    <label for="quantity-input">Quantity</label>
+    <input
+      id="quantity-input"
+      type="number"
+      [formControl]="quantity"
+      placeholder="Quantity"
+    />
+  </li>
+</ul>
+
+<h1>Store:</h1>
+<ul id="addedProducts">
+  Added products:
+  <li *ngFor="let product of addedProducts">
+    {{ product.name }} {{ product.price }} {{ product.currency }}, Quantity:
+    {{ product.quantity }}
+  </li>
+</ul>
+<button (click)="buyProducts()">Buy</button>

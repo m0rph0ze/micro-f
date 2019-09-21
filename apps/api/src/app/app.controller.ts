@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -12,7 +12,7 @@ export class AppController {
   };
 
   @Post('addIncome')
-  addIncome(income: any) {
+  addIncome(@Body() income: any) {
     return this.appService.addIncome(income)
   }
 }
