@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -8,6 +8,8 @@ import { BasketComponent } from './basket/basket.component';
 import { BasketService } from './basket.service';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './store/store.component';
+import { createCustomElement } from '@angular/elements';
+
 
 @NgModule({
   declarations: [AppComponent, BasketComponent, StoreComponent],
@@ -18,6 +20,14 @@ import { StoreComponent } from './store/store.component';
     RouterModule.forRoot([], { initialNavigation: 'enabled' })
   ],
   providers: [BasketService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents: [AppComponent]
 })
-export class AppModule {}
+export class BasketModule {
+  // constructor(private injector: Injector) {
+  //   const sender = createCustomElement(AppComponent, { injector });
+  //   customElements.define('basket-module', sender);
+  // }
+
+  // ngDoBootstrap() {}
+}

@@ -416,6 +416,68 @@
           }
         }
       }
+    },
+    "basket-lib": {
+      "projectType": "library",
+      "root": "libs/basket-lib",
+      "sourceRoot": "libs/basket-lib/src",
+      "prefix": "micro-f",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/basket-lib/tsconfig.lib.json",
+              "libs/basket-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/basket-lib/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/basket-lib/jest.config.js",
+            "tsConfig": "libs/basket-lib/tsconfig.spec.json",
+            "setupFile": "libs/basket-lib/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "one-lib": {
+      "projectType": "library",
+      "root": "libs/one-lib",
+      "sourceRoot": "libs/one-lib/src",
+      "prefix": "micro-f",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/one-lib/tsconfig.lib.json",
+              "libs/one-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/one-lib/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/one-lib/jest.config.js",
+            "tsConfig": "libs/one-lib/tsconfig.spec.json",
+            "setupFile": "libs/one-lib/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
